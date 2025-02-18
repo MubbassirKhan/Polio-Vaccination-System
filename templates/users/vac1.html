@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/styles.css') }}">
+    <title>VAC-Detail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        {% if session.logged_in %}
+        <button id="openPanel"><i class="fas fa-user"> &nbsp; </i>{{ session.uname }}</button>
+        {% endif %}
+        <div class="sliding-panel">
+            <div class="panel-content">
+                <h1>User Details</h1>
+                <div class="form-container">
+                    <h2>Edit Details</h2>
+                    <form  method="POST">
+                        <input type="hidden" name="user_id" value="hello">
+                        <div class="input-group">
+                            <label for="uname">Name:</label>
+                            <input type="text" name="uname" value="{{ user[0] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('uname')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" value="{{ user[1] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('email')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="phno">Phone Number:</label>
+                            <input type="number" name="phno" value="{{ user[2] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('phno')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="Pass">Password:</label>
+                            <input type="password" name="Pass" value="{{ user[3] if user else '' }}" required><br>
+                            <button class="edit-button" type="button" onclick="editField('Pass')">Edit</button>
+                        </div><br><br>
+                        <div class="div" >
+                            <input type="submit" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <h1>POLIO VACCINATION SYSTEM</h1>
+    </header>
+    <nav>
+
+        <ul>
+            <!-- <li id="btn"><a href="javascript:void(0);" onclick="history.back();">Go Back</a></li> -->
+            {% if session.logged_in %}
+                <li id="logoutbtn"><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a></li>
+            {% if not session.logged_in %}
+                <li><a href="{{ url_for('login') }}"><i class="fas fa-user-circle"></i> LogIn/SignUp</a></li>
+            {% endif %}
+            {% if 'logged_in' in session and session['logged_in'] %}
+                <li><a href="{{ url_for('book') }}"><i class="fas fa-calendar-plus"></i> Book Vaccine</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('vac_detail') }}"><i class="fas fa-syringe"></i> Vaccine Details</a></li>
+            {% if 'logged_in' in session and session['logged_in'] %}
+                <li><a href="{{ url_for('child_detail') }}"><i class="fas fa-child"></i> Child Details</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('vac_drive') }}"><i class="fas fa-car"></i> Vaccine drive</a></li>
+            <li><a href="{{ url_for('other_vaccine') }}"><i class="fas fa-vial"></i> Other Vaccine</a></li>
+            <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About Us</a></li>
+        </ul>
+        
+    </nav>
+</div>
+<div id="boxhead">
+    <h1 style="margin-left: 41pc;">Inavtive Polio Vaccine</h1>
+</div>
+<div id="vacbox">
+    <div class="subvac">
+        
+            <img src="{{ url_for('static', filename='vaccine11.jpg') }}" alt="Image Loading" width="100%">
+            <img src="{{ url_for('static', filename='vaccine8.webp') }}" alt="Image Loading" width="100%">
+            <img src="{{ url_for('static', filename='vaccine12.jpg') }}" alt="Image Loading" width="100%">
+        
+    </div>
+    <div id="vac">
+            <div class="s1"> <br>
+                <h1>What is the Inactive polio vaccine?</h1><br>
+                <p> Inactivated polio vaccine (IPV) was developed in 1955 by Dr Jonas Salk. Also called the Salk vaccine
+                    IPV
+                    consists of inactivated (killed) poliovirus strains of all three poliovirus types. IPV is given by
+                    intramuscular or intradermal injection and needs to be administered by a trained health worker. IVP
+                    produces antibodies in the blood to all three types of poliovirus. In the event of infection, these
+                    antibodies prevent the spread of the virus to the central nervous system and protect against
+                    paralysis.
+                </p>
+            </div>
+            <div class="s1">
+                <h1>Advantages</h1><br>
+                <li>As IPV is not a ‘live’ vaccine, it carries no risk of VAPP.</li>
+                <li>IPV triggers an excellent protective immune response in most people.</li>
+            </div>
+            <div class="s1">
+                <h1>Disadvantages</h1><br>
+                <li>IPV induces very low levels of immunity in the intestine. As a result, when a person immunized with
+                    IPV
+                    is infected with wild poliovirus, the virus can still multiply inside the intestines and be shed in
+                    the
+                    faeces, risking continued circulation.</li>
+                <li>IPV is over five times more expensive than OPV. Administering the vaccine requires trained health
+                    workers, as well as sterile injection equipment and procedures.</li>
+            </div>
+            <div class="s1">
+                <h1>Safety</h1><br>
+                <li>IPV is one of the safest vaccines in use. No serious systemic adverse reactions have been shown to
+                    follow vaccination.</li>
+            </div> <br><br><br><br><br><br><br><br><br>
+            <div class="s1">
+                <h1>Recommended use</h1><br>
+                <li>An increasing number of industrialized, polio-free countries are using IPV as the vaccine of choice.
+                    This is because the risk of paralytic polio associated with continued routine use of OPV is deemed
+                    greater than the risk of imported wild virus.</li>
+                <li>However, as IPV does not stop transmission of the virus, OPV is used wherever a polio outbreak needs
+                    to
+                    be contained, even in countries which rely exclusively on IPV for their routine immunization
+                    programme.
+                </li>
+                <li>Once polio has been eradicated, use of all OPV will need to be stopped to prevent re-establishment
+                    of
+                    transmission due to VDPVs.</li>
+            </div><br><br>
+            <div class="s1">
+                <h1>Safety of inactivated poliovirus vaccines (IPV)</h1><br>
+                <p>With several countries on the threshold of adopting the use of IPV, in line with the Global Vaccine
+                    Action Plan (GVAP) strategy for polio eradication, the GACVS session on IPV focussed on visiting: i)
+                    the
+                    safety record of IPV, as determined in controlled clinical trials during development of the
+                    currently
+                    available stand-alone and IPV-containing combination vaccines; ii) Adverse events following
+                    immunization
+                    (AEFI) reports related to IPV from the Vaccine Adverse Events Reporting System (VAERS) of the USA;
+                    and
+                    iii) issues related to the manufacturing process for IPV.</p>
+                <br><br>
+                <p>The first polio vaccine was developed by Jonas Salk, from formaldehyde-inactivated wild polio
+                    viruses.
+                    Salk’s IPV was tested and proved highly efficacious against paralytic poliomyelitis in a large
+                    clinical
+                    trial conducted in US schoolchildren in 1954, which was rapidly followed by licensure of the product
+                    and
+                    implementation of mass vaccination campaigns in children in the USA, Canada and Western Europe. In
+                    less
+                    than a year, however, this first IPV was the centre of one the most serious vaccine safety events
+                    recorded, the Cutter incident, in which inadequate inactivation of the polio viruses during the
+                    manufacturing process resulted in 61 cases of vaccine-associated paralytic poliomyelitis (VAPP), 80
+                    family contact cases, 17 community contact cases and 11 deaths. Following this incident, IPV
+                    manufacturing techniques were modified to ensure complete inactivation and avoid any potential risk
+                    of
+                    injecting live polio viruses. This also resulted in a reduction of the immunogenicity of IPV
+                    preparations. In the 1970s an enhanced-potency IPV, similar in immunogenicity to the original
+                    product,
+                    replaced the second generation IPV.</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.getElementById("openPanel").addEventListener("click", function () {
+        document.querySelector(".sliding-panel").style.right = "0";
+    });
+
+    document.addEventListener("click", function (e) {
+        if (!document.querySelector(".sliding-panel").contains(e.target) && e.target !== document.getElementById("openPanel")) {
+            document.querySelector(".sliding-panel").style.right = "-50%";
+        }
+    });
+</script>
+</html>

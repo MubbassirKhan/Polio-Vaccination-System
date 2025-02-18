@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccine Drive</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        #main {
+            padding: 20px;
+        }
+
+        #vaccine-drive {
+            margin-bottom: 20px;
+        }
+
+        #vaccine-drive h2 {
+            color: #035c4f;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #vaccine-drive p {
+            margin-bottom: 10px;
+        }
+
+        #vaccine-drive ul {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        #vaccine-drive ul li {
+            margin-bottom: 5px;
+        }
+
+        #additional-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #additional-content img {
+            height: 100%;
+        }
+
+        #additional-content h3 {
+            color: #035c4f;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #additional-content ul {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        #additional-content ul li {
+            margin-bottom: 5px;
+        }
+
+        #home-vaccination h2 {
+            color: #035c4f;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #home-vaccination p {
+            margin-bottom: 10px;
+        }
+
+        #registration-link a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #035c4f;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        #registration-link a:last-child {
+            margin-right: 0;
+        }
+
+        #registration-link a:hover {
+            background-color: #e91e63;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        {% if session.logged_in %}
+        <button id="openPanel"><i class="fas fa-user"> &nbsp; </i>{{ session.uname }}</button>
+        {% endif %}
+        <div class="sliding-panel">
+            <div class="panel-content">
+                <h1>User Details</h1>
+                <div class="form-container">
+                    <h2>Edit Details</h2>
+                    <form method="POST">
+                        <input type="hidden" name="user_id" value="hello">
+                        <div class="input-group">
+                            <label for="uname">Name:</label>
+                            <input type="text" name="uname" value="{{ user[0] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('uname')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" value="{{ user[1] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('email')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="phno">Phone Number:</label>
+                            <input type="number" name="phno" value="{{ user[2] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('phno')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="Pass">Password:</label>
+                            <input type="password" name="Pass" value="{{ user[3] if user else '' }}" required><br>
+                            <button class="edit-button" type="button" onclick="editField('Pass')">Edit</button>
+                        </div><br><br>
+                        <div class="div">
+                            <input type="submit" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <h1>POLIO VACCINATION SYSTEM</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a></li>
+            {% if session.logged_in %}
+            <li id="logoutbtn"><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            {% endif %}
+            {% if not session.logged_in %}
+            <li><a href="{{ url_for('login') }}"><i class="fas fa-user-circle"></i> LogIn/SignUp</a></li>
+            {% endif %}
+            {% if 'logged_in' in session and session['logged_in'] %}
+            <li><a href="{{ url_for('book') }}"><i class="fas fa-calendar-plus"></i> Book Vaccine</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('vac_detail') }}"><i class="fas fa-syringe"></i> Vaccine Details</a></li>
+            {% if 'logged_in' in session and session['logged_in'] %}
+            <li><a href="{{ url_for('child_detail') }}"><i class="fas fa-child"></i> Child Details</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('other_vaccine') }}"><i class="fas fa-vial"></i> Other Vaccine</a></li>
+            <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About Us</a></li>
+        </ul>
+    </nav>
+    <div id="main">
+        <div id="vaccine-drive">
+            <h2>Join Our Vaccine Drive!</h2>
+            <p>Help us in our mission to eradicate polio by participating in our upcoming vaccine drive. Together, we
+                can make a difference in the lives of children and ensure a polio-free future.</p>
+            <ul>
+                <li>Date: [Insert Date]</li>
+                <li>Time: [Insert Time]</li>
+                <li>Location: [Insert Location]</li>
+            </ul>
+            <p>Please ensure that you meet the eligibility criteria and bring the necessary documents for registration.
+                Our dedicated team will be available to assist you throughout the drive.</p>
+            <p>Don't miss this opportunity to protect your child and contribute to the global effort against polio.</p>
+            <div id="additional-content" style="justify-content: center;">
+                <div>
+                    <img src="{{ url_for('static', filename='vacdrive2.jfif') }}" alt="Image Loading" width="500px">
+                </div>
+                <div style="margin-left: 15pc; margin-top: 2pc;">
+                    <h3>Additional Information</h3>
+                    <ul>
+                        <li>Vaccination drive is open to all individuals aged 18 and above.</li>
+                        <li>Please bring your identification documents for verification.</li>
+                        <li>Face masks and social distancing are mandatory during the drive.</li>
+                        <li>Follow the instructions provided by the healthcare staff.</li>
+                        <li>Limited slots are available. Register early to secure your spot.</li>
+                        <li>Feel free to contact our support team for any queries.</li>
+                        <li>Stay updated with the latest vaccination guidelines.</li>
+                        <li>Help us spread the word about the vaccine drive.</li>
+                        <li>Share your vaccination experience on social media using #VaccineDrive.</li>
+                        <li>Together, let's create a polio-free world!</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="home-vaccination">
+                <h2>Anganwadi Home Vaccination</h2>
+                <p>We understand that visiting vaccination centers may not always be convenient for everyone. That's why
+                    we offer Anganwadi Home Vaccination services for eligible individuals.</p>
+                <p>If you are unable to visit a vaccination center, our trained healthcare professionals will visit your
+                    home to administer the polio vaccine to your child.</p>
+                <p>To request Anganwadi Home Vaccination, please contact our helpline or visit your nearest Anganwadi
+                    center for more information.</p>
+                <p>Our team will guide you through the process and ensure that your child receives the necessary
+                    vaccinations in the comfort of your own home.</p>
+            </div>
+            <div id="registration-link">
+                <a href="{{ url_for('register') }}">Register Now</a>
+                <a href="{{ url_for('book') }}">Book Now</a>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.getElementById("openPanel").addEventListener("click", function () {
+        document.querySelector(".sliding-panel").style.right = "0";
+    });
+
+    document.addEventListener("click", function (e) {
+        if (!document.querySelector(".sliding-panel").contains(e.target) && e.target !== document.getElementById("openPanel")) {
+            document.querySelector(".sliding-panel").style.right = "-50%";
+        }
+    });
+</script>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Vaccine</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        {% if session.logged_in %}
+        <button id="openPanel"><i class="fas fa-user"> &nbsp; </i>{{ session.uname }}</button>
+        {% endif %}
+        <div class="sliding-panel">
+            <div class="panel-content">
+                <h1>User Details</h1>
+                <div class="form-container">
+                    <h2>Edit Details</h2>
+                    <form  method="POST">
+                        <input type="hidden" name="user_id" value="hello">
+                        <div class="input-group">
+                            <label for="uname">Name:</label>
+                            <input type="text" name="uname" value="{{ user[0] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('uname')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" value="{{ user[1] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('email')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="phno">Phone Number:</label>
+                            <input type="number" name="phno" value="{{ user[2] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('phno')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="Pass">Password:</label>
+                            <input type="password" name="Pass" value="{{ user[3] if user else '' }}" required><br>
+                            <button class="edit-button" type="button" onclick="editField('Pass')">Edit</button>
+                        </div><br><br>
+                        <div class="div" >
+                            <input type="submit" value="Save">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <h1>POLIO VACCINATION SYSTEM</h1>
+    </header>
+    <nav>
+
+        <ul>
+            <!-- <li id="btn"><a href="javascript:void(0);" onclick="history.back();">Go Back</a></li> -->
+            {% if session.logged_in %}
+            <li id="logoutbtn"><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a></li>
+            {% if 'logged_in' in session and session['logged_in'] %}
+            <li><a href="{{ url_for('book') }}"><i class="fas fa-calendar-plus"></i> Book Vaccine</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('vac_detail') }}"><i class="fas fa-syringe"></i> Vaccine Details</a></li>
+            <li><a href="{{ url_for('vac_drive') }}"><i class="fas fa-car"></i> Vaccine drive</a></li>
+            <li><a href="{{ url_for('other_vaccine') }}"><i class="fas fa-vial"></i> Other Vaccine</a></li>
+            <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About Us</a></li>
+        </ul>
+    </nav>
+
+    </div>
+    <div id="childbox1">
+        <a href="{{ url_for('childsubmit') }}"><i class="fas fa-upload"></i> Submit Child Details</a>
+        <a href="{{ url_for('childget') }}"><i class="fas fa-download"></i> Get Child Details</a>
+    </div><br>
+
+    <div id="head2">
+        <h5>Four doses of the polio shot for children are recommended by doctors as the best way to protect against
+            polio.</h5>
+        <h5>Your Child Will Needs <b>One Dose</b> At Each Of The Following</h5>
+    </div><br>
+    <!-- <div id="imgbyage">
+        <img src="vaccine5.jpg" alt="" width="80%" style="margin-left: 7pc;">
+    </div> -->
+    <div id="boydcontainer">
+        <div class="d1">
+            <div id="d1">
+                <h1>1st Dose</h1><br><br><br><br><br><br>
+                <a href="{{ url_for('dose1') }}"><i class="fas fa-syringe"></i> Click Here</a>
+            </div>
+        </div>
+        <div class="d2">
+            <div id="d2">
+                <h1>2nd Dose</h1><br><br><br><br><br><br>
+                <a href="{{ url_for('dose2') }}"><i class="fas fa-syringe"></i> Click Here</a>
+            </div>
+        </div>
+        <div class="d3">
+            <div id="d3">
+                <h1>3rd Dose</h1><br><br><br><br><br><br>
+                <a href="{{ url_for('dose3') }}"><i class="fas fa-syringe"></i> Click Here</a>
+            </div>
+        </div>
+        <div class="d4">
+            <div id="d4">
+                <h1>4th Dose</h1><br><br><br><br><br><br>
+                <a href="{{ url_for('dose4') }}"><i class="fas fa-syringe"></i> Click Here</a>
+            </div>
+        </div>
+
+    </div>
+    <div id="detcontainer">
+        <div id="detail1">
+            <h1>Why should my child get the polio shot?</h1>
+            <li>Protects your child from polio, a potentially serious disease.</li>
+            <li>Protects your child from developing lifelong paralysis from polio.</li>
+        </div>
+        <div id="detail2">
+            <h1>Prepare for your child's vaccine visit and learn about how you can:</h1>
+            <li>Research vaccines and ready your child before the visit</li>
+            <li>Comfort your child during the appointment</li>
+            <li>Care for your child after the shot</li>
+        </div>
+    </div>
+    <script>
+        document.getElementById("openPanel").addEventListener("click", function () {
+            document.querySelector(".sliding-panel").style.right = "0";
+        });
+    
+        document.addEventListener("click", function (e) {
+            if (!document.querySelector(".sliding-panel").contains(e.target) && e.target !== document.getElementById("openPanel")) {
+                document.querySelector(".sliding-panel").style.right = "-50%";
+            }
+        });
+    </script>
+</body>

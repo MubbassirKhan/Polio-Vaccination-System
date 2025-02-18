@@ -1,0 +1,655 @@
+header {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(#0f5847, #035c4f);
+    color: white;
+    text-shadow: 4px 4px 4px black;
+    height: 50px;
+    padding: 5px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+header h1 {
+    margin-left: 34pc;
+}
+
+header a {
+    float: left;
+    color: rgb(252, 248, 241);
+    margin-top: 3px;
+    border: none;
+}
+
+header a:hover {
+    color: #e91e63;
+}
+
+* {
+    margin: 0;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+nav {
+    position: sticky;
+    top: 50px;
+    background: linear-gradient(#19a991f3, #18ad94f3);
+    text-align: end;
+    color: blanchedalmond;
+    z-index: 2;
+    /* Increase the z-index value to make the nav appear on top */
+
+}
+
+a {
+    padding: 6px;
+    border: 1.6px solid white;
+    /* border-radius: 4px; */
+    text-decoration: none;
+    color: white;
+    text-shadow: 4px 4px 4px black;
+    position: relative;
+}
+
+a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+nav ul li {
+    display: inline-flex;
+    margin: 10px;
+    font-size: 12px;
+    background-color: #035c4f;
+    /* border-radius: 4px; */
+}
+
+ul a:hover {
+    border-color: #035c4f;
+}
+
+nav ul li:hover {
+    color: white;
+    transform: scale(1.2);
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+
+#b1 {
+    color: #035c4f;
+    font-size: 32px;
+    text-shadow: 1PX 2pX 2PX black;
+    padding: 10px;
+
+}
+
+span {
+    width: 60pc;
+    display: flex;
+    height: 90px;
+    padding: 2px;
+    animation: spin_word 13s infinite;
+}
+
+#animation {
+    margin: 80px;
+    height: 58px;
+    overflow: hidden;
+}
+
+#img {
+    margin-top: 2pc;
+}
+
+@keyframes spin_word {
+    0% {
+        transform: translateY(0%);
+    }
+
+    10% {
+        transform: translateY(-112%);
+    }
+
+    25% {
+        transform: translateY(-100%);
+    }
+
+    35% {
+        transform: translateY(-212%);
+    }
+
+    50% {
+        transform: translateY(-200%);
+    }
+
+    60% {
+        transform: translateY(-312%);
+    }
+
+    75% {
+        transform: translateY(-300%);
+    }
+
+    85% {
+        transform: translateY(-412%);
+    }
+
+    100% {
+        transform: translateY(-400%);
+    }
+}
+
+#body1 {
+    display: flex;
+}
+
+#b2 {
+    margin-left: -14pc;
+    margin-top: 2pc;
+}
+
+#body2 {
+    display: flex;
+    color: #035c4f;
+    text-align: center;
+    background-color: rgb(239, 239, 113);
+    margin-bottom: 1pc;
+}
+
+#additional-content {
+    background-color: #f2f2f2;
+    padding: 30px;
+}
+
+#additional-content h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#body3 {
+    background-color: rgb(235, 224, 246);
+    text-align: start;
+    padding: 2pc;
+    font-size: large;
+}
+
+#logoutbtn {
+    float: left;
+}
+
+#body3 h2 {
+    color: #035c4f;
+}
+
+#body3 a {
+
+    display: block;
+    width: 100%;
+    background-color: #19a991f3;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#body3 a:hover {
+    background-color: #45A049;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#body3 h1 {
+    text-align: center;
+    color: #035c4f;
+}
+
+
+.content-block {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.content-block h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.content-block p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    color: wheat;
+    background-color: #035c4f;
+}
+
+#midbody {
+    color: #035c4f;
+    text-align: center;
+    display: flex;
+    background-color: rgb(239, 239, 113);
+    margin-bottom: 1pc;
+}
+
+.one {
+    text-align: center;
+    margin: auto;
+    height: 17pc;
+    padding: 4pc;
+}
+
+
+#box {
+    box-shadow: -2px -2px 10px #000000, 2px 2px 10px #000000;
+    margin: auto;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    border: 2px solid black;
+}
+
+#box1 h4 {
+    font-size: 30px;
+}
+
+#box1 {
+    width: 50%;
+    font-size: 20px;
+    padding: 3pc;
+    color: aliceblue;
+    /* height: auto; */
+    background-color: #19a991f3;
+}
+
+#box2 {
+    width: 65%;
+    padding: 3pc;
+    /* height: auto; */
+}
+
+.form {
+    padding: 7px;
+    margin: 1pc;
+    font-size: 14px;
+    text-align: center;
+    border-bottom: 2px solid black;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+
+}
+
+/* Styles for the sliding panel */
+.sliding-panel {
+    position: fixed;
+    top: 0;
+    color: black;
+    right: -50%;
+    /* Start the panel off-screen */
+    width: 50%;
+    /* Adjust the width as needed */
+    height: 100vh;
+    /* Adjust the height as needed */
+    background-color: #c7cac9;
+    transition: right 0.5s ease-in-out;
+    text-shadow: none;
+    z-index: 9999;
+}
+
+#openPanel {
+    padding: 10px;
+    border: 2px solid white;
+    color: white;
+    background-color: #035c4f;
+    transition: background-color 0.3s;
+}
+
+#openPanel:hover {
+    background-color: #19a991f3;
+}
+
+/* Styles for the panel content */
+.panel-content {
+    padding: 20px;
+}
+
+/* Styles for the input groups and buttons */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    width: 120px;
+    margin-right: 10px;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 5px;
+}
+
+.input-group .edit-button {
+    margin-left: 10px;
+}
+
+.div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.div input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.div .btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.form input {
+    font-size: 16px;
+    background-color: #f0f0f0;
+    text-align: center;
+    border-bottom: 2px solid black;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+}
+
+#boxhead {
+    display: flex;
+    text-align: center;
+    margin: 2pc;
+    color: #025045;
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+#nextpage,
+#nextpage1 {
+    text-align: center;
+    margin-left: -2pc;
+    display: flex;
+}
+
+#nextpage p,
+#nextpage1 p {
+    margin: 5px;
+    color: #025045;
+    font-size: smaller;
+}
+
+#nextpage a,
+#nextpage1 a {
+    text-align: center;
+    border: none;
+    color: #025045;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#nextpage a:hover,
+#nextpage1 a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+#submit,
+#subhead {
+    color: #025045;
+    font-size: large;
+}
+
+#submit input {
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+#submit input:hover {
+    padding: 3px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    background-color: #06a983;
+}
+
+#condition {
+    display: flex;
+}
+
+#condition p {
+    margin: 1pc;
+    margin-left: 4pc;
+}
+
+#head2 {
+    text-align: center;
+    padding: 1pc;
+    margin-top: 0pc;
+    background-color: rgb(222, 218, 218);
+}
+
+
+
+#detail1 {
+    background-color: rgb(155, 217, 242);
+    margin: 1pc;
+    padding: 2pc;
+}
+
+#detail2 {
+    background-color: rgb(248, 248, 142);
+    margin: 1pc;
+    padding: 2pc;
+}
+
+#boydcontainer {
+    margin-top: 1pc;
+    display: flex;
+}
+
+
+
+
+#childbox1 {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+#childbox1 a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    color: #333;
+    text-shadow: none;
+    border-radius: 5px;
+    transition: transform 0.5s;
+}
+
+#childbox1 a:hover {
+    /* background-color: #3fbc9f; */
+    text-decoration: underline;
+    transform: scale(1.1);
+}
+
+
+h5 {
+    color: #035c4f;
+    font-size: larger;
+}
+
+.d1,
+.d2,
+.d3,
+.d4 {
+    background-image: url("vaccine1.webp");
+    background-size: 400px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: auto;
+    padding: 10px;
+    height: 200px;
+    width: 180px;
+    box-shadow: 0 0 2px #000000, 0 0 2px #000000, 0 0 10px #000000;
+}
+
+
+#d1,
+#d2,
+#d3,
+#d4 {
+    text-align: center;
+}
+
+#d1 a,
+#d2 a,
+#d3 a,
+#d4 a {
+    text-shadow: none;
+    background-color: rgb(255, 255, 255);
+    color: rgb(3, 3, 68);
+    font-size: large;
+    font-weight: bold;
+    border: 1px solid black;
+}
+
+#d1 a:hover,
+#d2 a:hover,
+#d3 a:hover,
+#d4 a:hover {
+    background-color: #f4b0c7;
+    color: white;
+    transform: scale(1.1);
+    transition: background-color 0.5s ease-in-out, transform 0.3s ease-in-out;
+}
+
+
+.subb1 {
+    text-align: center;
+    height: 15.5pc;
+    border-radius: 5px;
+    box-shadow: 0 0 1px #000000, 0 0 2px #000000, 0 0 9px #000000;
+    margin: auto;
+}
+
+.subb1:hover {
+    color: white;
+    transform: scale(1.1);
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.body {
+    justify-content: center;
+    display: flex;
+}
+
+.main {
+    text-align: start;
+    font-size: small;
+    margin: 1pc;
+
+}
+
+.main2 {
+    display: flex;
+    background-color: rgb(199, 195, 195);
+    margin-top: 7px;
+    padding: 5px;
+}
+
+.main2 h4 {
+    margin-top: 2pc;
+    margin-left: 1pc;
+    font-size: larger;
+}
+
+.main1,
+.main2 {
+    background-color: rgb(199, 195, 195);
+    margin-top: 7px;
+    padding: 9px;
+}
+
+.subvac img {
+    padding: 1pc;
+}
+
+#vacbox {
+    box-shadow: -2px -2px 10px #000000, 2px 2px 10px #000000;
+    margin: 2pc;
+    display: flex;
+    border: 2px solid black;
+}
+
+.s1 {
+    padding-right: 1pc;
+}
+
+.s1 h1 {
+    color: #035c4f;
+}
+
+.s1 p,
+.s1 li {
+    font-size: large;
+}
+
+/* Style for the Go Back button */
+.go-back-button {
+    position: fixed;
+    padding: 10px 20px;
+    background-color: #025045;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+/* Hover effect */
+.go-back-button:hover {
+    background-color: #06a983;
+}
+
+/* Click effect */
+.go-back-button:active {
+    background-color: #06a983;
+}

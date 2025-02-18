@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/styles.css') }}">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        {% if session.logged_in %}
+            <a href="{{ url_for('userinfo') }}"><i class="fas fa-user"></i>{{ session.uname }}</a>
+        {% endif %}
+        <h1 >POLIO VACCINATION SYSTEM</h1>
+    </header>
+    <nav>
+        <ul>
+            <!-- <li><a href="javascript:void(0);" onclick="history.back();" class="btn" id="goback">Go Back</a></li> -->
+            {% if session.logged_in %}
+                <li id="logoutbtn"><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('index') }}">Home</a></li>>
+            <li><a href="{{ url_for('book') }}">Boook Vaccine</a></li>
+            <li><a href="{{ url_for('vac_detail') }}">Vaccine Details</a></li>
+            <li><a href="{{ url_for('child_detail') }}">Child Details</a></li>
+            <li><a href="{{ url_for('vac_drive') }}"><i class="fas fa-car"></i> Vaccine drive</a></li>
+            <li><a href="{{ url_for('other_vaccine') }}"><i class="fas fa-vial"></i> Other Vaccine</a></li>
+            <li><a href="{{ url_for('about') }}">About Us</a></li>
+        </ul>
+    </nav>
+        <div id="boxhead">
+            <h1 style="margin-left: 45pc;">LOG-IN</h1>
+        </div>
+    <div id="box">
+        <div id="box1">
+            <h4>WELCOME!!!</h4><br><br><br>
+            <p>- Welcome To Login Page Of Admin</p>
+        </div>
+        <div id="box2">
+            <form action="/adminlogin" method="post">
+                <div class="form" id="subhead">
+                    <h3> LOG-IN </h3>
+                </div>
+                <div class="form">
+                    <i class="zmdi zmdi-account material-design-iconic-font"></i>
+                    <input required type="text" name="aname" id="uname" placeholder="Enter User-Name">
+                </div>
+    
+                <div class="form">
+                    <i class="zmdi zmdi-lock material-design-iconic-font"></i>
+                    <input required type="password" name="aPass" id="Pass" placeholder="Enter Passward">
+                </div>
+    
+                <div id="submit" class="form">
+                     <input type="submit" value="LOG-IN"><br>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Reports</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}"></head>
+</head>
+
+<body>
+    <header>
+        <h1>POLIO VACCINATION SYSTEM</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li{% if active_page == 'home' %} class="active"{% endif %}><a href="{{ url_for('adminhome') }}">Home</a></li>
+            <li><a href="{{ url_for('vac_stock') }}">Vaccine Stock</a></li>
+            <li><a href="{{ url_for('vac_schedule') }}">Vaccine Schedule</a></li>
+            <li><a href="{{ url_for('reports') }}">Reports</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Users</a>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('booked_vaccines') }}">Booked Vaccines</a>
+                    <a href="{{ url_for('registered_users') }}">Registered Users</a>
+                </div>
+            </li>
+            <li><a href="{{ url_for('admin_logout') }}">Logout</a></li>
+        </ul>
+        
+    </nav>
+
+    <section class="content">
+        <h2>Reports</h2>
+        <div class="report-item">
+            <h3>Monthly Vaccination Report</h3>
+            <p>This report provides a summary of the monthly vaccination statistics.</p>
+            <a href="#" class="button">Download Report</a>
+        </div>
+        <div class="report-item">
+            <h3>Age Group Analysis</h3>
+            <p>Analyze the vaccination coverage based on different age groups.</p>
+            <a href="#" class="button">Download Report</a>
+        </div>
+        <div class="report-item">
+            <h3>Geographical Coverage Report</h3>
+            <p>View the vaccination coverage based on different geographical regions.</p>
+            <a href="#" class="button">Download Report</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Polio Vaccination System. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

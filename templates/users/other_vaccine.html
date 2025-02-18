@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Vaccines</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        {% if session.logged_in %}
+        <button id="openPanel"><i class="fas fa-user"> &nbsp; </i>{{ session.uname }}</button>
+        {% endif %}
+        <div class="sliding-panel">
+            <div class="panel-content">
+                <h1>User Details</h1>
+                <div class="form-container">
+                    <h2>Edit Details</h2>
+                    <form method="POST">
+                        <input type="hidden" name="user_id" value="hello">
+                        <div class="input-group">
+                            <label for="uname">Name:</label>
+                            <input type="text" name="uname" value="{{ user[0] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('uname')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" value="{{ user[1] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('email')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="phno">Phone Number:</label>
+                            <input type="number" name="phno" value="{{ user[2] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('phno')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="Pass">Password:</label>
+                            <input type="password" name="Pass" value="{{ user[3] if user else '' }}" required><br>
+                            <button class="edit-button" type="button" onclick="editField('Pass')">Edit</button>
+                        </div><br><br>
+                        <div class="div">
+                            <input type="submit" value="Save">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <h1>POLIO VACCINATION SYSTEM</h1>
+    </header>
+    <nav>
+        <ul>
+            <!-- <li id="btn"><a href="javascript:void(0);" onclick="history.back();">Go Back</a></li> -->
+            {% if session.logged_in %}
+            <li id="logoutbtn"><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a></li>
+            {% if not session.logged_in %}
+            <li><a href="{{ url_for('login') }}"><i class="fas fa-user-circle"></i> LogIn/SignUp</a></li>
+            {% endif %}
+            {% if 'logged_in' in session and session['logged_in'] %}
+            <li><a href="{{ url_for('book') }}"><i class="fas fa-calendar-plus"></i> Book Vaccine</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('vac_drive') }}"><i class="fas fa-car"></i> Vaccine drive</a></li>
+
+            {% if 'logged_in' in session and session['logged_in'] %}
+            <li><a href="{{ url_for('child_detail') }}"><i class="fas fa-child"></i> Child Details</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('vac_drive') }}"><i class="fas fa-car"></i> Vaccine drive</a></li>
+            <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About Us</a></li>
+        </ul>
+
+    </nav>
+
+
+    </div>
+    <h2 id="boxhead" style="margin-left: 43pc;">OTHER VACCINES</h2>
+    <div class="body">
+        <div class="other">
+            <h3>Covaccine</h3>
+            <a href="https://www.cowin.gov.in/" target="_blank"><br><br><br>
+                <img src="{{ url_for('static', filename='cowin.svg') }}" alt="Covaccine" width="240px">
+            </a><br><br><br>
+            <p>Most people infected with the virus will experience mild to moderate respiratory illness and recover
+                without requiring special treatment. However, some will become seriously ill and require medical
+                attention. Older people and those with underlying medical conditions like cardiovascular disease,
+                diabetes, chronic respiratory disease, or cancer are more likely to develop serious illness. To know
+                more visit Official Website.</p><br><br>
+            <a href="https://www.cowin.gov.in/" target="_blank">--Cowin--</a>
+        </div>
+
+        <div class="other">
+            <h3>Hepatitis B Vaccine</h3><br><br><br>
+            <a href="https://www.cdc.gov/vaccines/vpd/hepb/index.html" target="_blank">
+                <img src="{{ url_for('static', filename='hepatitis.jfif') }}" alt="Hepatitis B Vaccine" width="180px">
+            </a><br><br><br>
+            <p>Hepatitis means inflammation of the liver. When the liver is inflamed or damaged, its function can be
+                affected. Heavy alcohol use, toxins, some medications, and certain medical conditions can all cause
+                hepatitis. To know more visit their Official Website</p><br><br><br>
+            <a href="https://www.cdc.gov/vaccines/vpd/hepb/index.html" target="_blank">--Hepatitis B--</a>
+        </div>
+
+        <div class="other">
+            <h3>Measles, Mumps, and Rubella (MMR) Vaccine</h3><br><br><br>
+            <a href="https://www.cdc.gov/vaccines/vpd/mmr/index.html" target="_blank">
+                <img src="{{ url_for('static', filename='mmr.jfif') }}" alt="MMR Vaccine" width="270px">
+            </a><br><br><br>
+            <p>CDC recommends that people get MMR vaccine to protect against measles, mumps, and rubella. Children
+                should get two doses of MMR vaccine, starting with the first dose at 12 to 15 months of age, and the
+                second dose at 4 through 6 years of age. Teens and adults should also be up to date on their MMR
+                vaccination. To know more visit their Official Website</p><br><br><br>
+            <a href="https://www.cdc.gov/vaccines/vpd/mmr/index.html" target="_blank">--MMR Vaccine--</a>
+        </div>
+
+        <div class="other">
+            <h3>Tetanus, Diphtheria, and Pertussis (Tdap) Vaccine</h3><br><br><br>
+            <a href="https://www.cdc.gov/vaccines/vpd/tdap/index.html" target="_blank">
+                <img src="{{ url_for('static', filename='tpad.jfif') }}" alt="Tdap Vaccine" width="220px">
+            </a><br><br><br>
+            <p> TETANUS (T) causes painful stiffening of the muscles. Tetanus can lead to serious health problems,
+                including being unable to open the mouth, having trouble swallowing and breathing, or death. To know
+                more visit their Official Website</p><br><br><br>
+            <a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/tdap.html" target="_blank">--Tdap Vaccine--</a>
+        </div>
+    </div><br><br><br><br><br>
+
+</body>
+<style>
+    .other a {
+        color: #000000;
+    }
+
+    .other a:hover {
+        color: blue;
+        text-transform: uppercase;
+    }
+
+    .other {
+        text-align: center;
+        margin: auto;
+        border: 1px solid black;
+        box-shadow: 0 0 1px #000000, 0 0 2px #000000, 0 0 7px #000000;
+        height: 38pc;
+        width: 20pc;
+        padding: 1pc;
+    }
+
+    .other:hover {
+        box-shadow: 0 0 4px #000000, 0 0 6px #000000, 0 0 15px #000000;
+        ;
+    }
+
+    .other h3 {
+        text-align: center;
+        color: #035c4f;
+        text-decoration: underline;
+    }
+</style>
+<script>
+    document.getElementById("openPanel").addEventListener("click", function () {
+        document.querySelector(".sliding-panel").style.right = "0";
+    });
+
+    document.addEventListener("click", function (e) {
+        if (!document.querySelector(".sliding-panel").contains(e.target) && e.target !== document.getElementById("openPanel")) {
+            document.querySelector(".sliding-panel").style.right = "-50%";
+        }
+    });
+</script>
+
+</html>

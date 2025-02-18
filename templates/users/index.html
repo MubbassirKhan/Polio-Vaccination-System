@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLIO-HOME</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        {% if session.logged_in %}
+        <button id="openPanel"><i class="fas fa-user"> &nbsp; </i>{{ session.uname }}</button>
+        {% endif %}
+        <div class="sliding-panel">
+            <div class="panel-content">
+                <h1>User Details</h1>
+                <div class="form-container">
+                    <h2>Edit Details</h2>
+                    <form method="POST">
+                        <input type="hidden" name="user_id" value="hello">
+                        <div class="input-group">
+                            <label for="uname">Name:</label>
+                            <input type="text" name="uname" value="{{ user[0] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('uname')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" value="{{ user[1] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('email')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="phno">Phone Number:</label>
+                            <input type="number" name="phno" value="{{ user[2] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('phno')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="Pass">Password:</label>
+                            <input type="text" name="Pass" value="{{ user[3] if user else '' }}" required><br>
+                            <button class="edit-button" type="button" onclick="editField('Pass')">Edit</button>
+                        </div><br><br>
+                        <div class="div">
+                            <input type="submit" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <h1>POLIO VACCINATION SYSTEM</h1>
+    </header>
+    <nav>
+        <ul>
+            {% if session.logged_in %}
+            <li id="logoutbtn"><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            {% endif %}
+            {% if not session.logged_in %}
+            <li><a href="{{ url_for('login') }}"><i class="fas fa-user-circle"></i> LogIn/SignUp</a></li>
+            {% endif %}
+            {% if 'logged_in' in session and session['logged_in'] %}
+            <li><a href="{{ url_for('book') }}"><i class="fas fa-calendar-plus"></i> Book Vaccine</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('vac_detail') }}"><i class="fas fa-syringe"></i> Vaccine Details</a></li>
+            {% if 'logged_in' in session and session['logged_in'] %}
+            <li><a href="{{ url_for('child_detail') }}"><i class="fas fa-child"></i> Child Details</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('vac_drive') }}"><i class="fas fa-car"></i> Vaccine drive</a></li>
+            <li><a href="{{ url_for('other_vaccine') }}"><i class="fas fa-vial"></i> Other Vaccine</a></li>
+            <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About Us</a></li>
+        </ul>
+    </nav>
+    <div id="main">
+        <div id="body1">
+            <div id="b1">
+                <div id="img">
+                    <img src="{{ url_for('static', filename='phome2.png') }}" alt="Image Loading" width="80%">
+                </div>
+                <div id="animation">
+                    <span>
+                        <h2>Do Boond Zindagi Ke</h2>
+                    </span>
+                    <span>
+                        <h2>Spare The Children, Give The Vaccine</h2>
+                    </span>
+                    <span>
+                        <h2>Life With Polio Is Full Of Challanges</h2>
+                    </span>
+                    <span>
+                        <h2>Let Us Kick Out Polio From Our Lives</h2>
+                    </span>
+                </div>
+                <marquee direction="right">POLIO</marquee>
+
+            </div>
+            <div id="b2">
+                <img src="{{ url_for('static', filename='india.svg') }}" alt="Image Loading" width="550px">
+            </div>
+        </div>
+        <div id="body2">
+            <img src="{{ url_for('static', filename='phome1.jpg') }}" alt="Image Loading">
+            <div>
+                <h1>What is polio?</h1>
+                <p>Polio, or poliomyelitis, is a disabling and life-threatening disease caused by the poliovirus. The
+                    virus
+                    can infect a person’s spinal cord, causing paralysis (can’t move parts of the body). Paralysis
+                    caused by
+                    poliovirus occurs when the virus replicates in and attacks the nervous system. The paralysis can be
+                    lifelong, and it can be deadly.</p> <br>
+                <h1>The Polio Shot Is Safe</h1>
+                <p>The polio shot is very safe, and is effective at preventing polio. Vaccines like any medicine, can
+                    have
+                    side effects. These are usually mild and go away on their own.</p>
+            </div>
+        </div>
+        <div id="body3">
+            <h1>Welcome to the Polio Vaccination System</h1><br>
+            <p>
+                At our Polio Vaccination System, we are committed to ensuring the health and well-being of individuals
+                by providing
+                efficient and accessible polio vaccination services.
+            </p><br>
+            <p>
+                Our system allows you to register, schedule vaccination appointments, and manage your vaccination
+                records easily.
+                With our user-friendly interface, you can conveniently update your personal information and stay
+                informed about the
+                latest vaccination programs.
+            </p><br>
+            <h2>Why Choose Our Polio Vaccination System?</h2><br>
+            <ul>
+                <li>Convenient online registration</li>
+                <li>Flexible appointment scheduling</li>
+                <li>Secure and confidential vaccination records</li>
+                <li>Real-time updates on vaccination programs</li>
+                <li>Friendly and knowledgeable staff</li>
+            </ul><br>
+            <h2>Get Started Today!</h2><br>
+            <p>
+                To benefit from our Polio Vaccination System, simply sign up for an account and start managing your
+                vaccination
+                journey. Stay proactive in protecting yourself and your loved ones from polio by joining our system.
+            </p><br>
+            <h2>Polio Eradication Efforts</h2><br>
+            <p>Learn about the ongoing global efforts to eradicate polio and the progress made so far in eliminating
+                this disease from the world.</p><br>
+
+            <h2>Polio Vaccination Campaigns</h2><br>
+            <p>Find information about upcoming polio vaccination campaigns in your area and how you can participate or
+                support them.</p><br>
+
+            <h2>Polio Awareness Programs</h2><br>
+            <p>Discover various polio awareness programs and initiatives aimed at spreading knowledge about polio
+                prevention and vaccination.</p><br>
+            <br>
+
+            <a href="{{ url_for('register') }}" id="a">Sign Up</a><br>
+
+        </div>
+    </div>
+    <footer>
+        <div class="one">
+            <h1>VACCINATION SERVICE</h1><br>
+            <h4>Register Member</h4>
+            <h4>Book Vaccination Slot</h4>
+            <h4>Management Appointment</h4>
+        </div>
+        <div class="one">
+            <h1>PLATFORM</h1><br>
+            <h4>Vaccinator</h4>
+            <h4>Department Login</h4>
+            <h4>Vaccination Statistics</h4>
+        </div>
+        <div class="one">
+            <h1>RESOURCES</h1><br>
+            <h4>How To Get Vaccinated</h4>
+            <h4>Do's & Dont</h4>
+            <h4>OverView</h4>
+            <h4>Guidelines</h4>
+        </div>
+        <div class="one">
+            <h1>SUPPORT</h1><br>
+            <h4>Frequently Asked Question</h4>
+            <h4>Queries</h4>
+            <h4>Contact</h4>
+            <h4>Mail</h4>
+        </div>
+
+    </footer>
+</body>
+<script>
+    document.getElementById("openPanel").addEventListener("click", function () {
+        document.querySelector(".sliding-panel").style.right = "0";
+    });
+
+    document.addEventListener("click", function (e) {
+        if (!document.querySelector(".sliding-panel").contains(e.target) && e.target !== document.getElementById("openPanel")) {
+            document.querySelector(".sliding-panel").style.right = "-50%";
+        }
+    });
+</script>
+
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Child Get Details</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+    </style>
+</head>
+
+<body>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    <div id="boxhead">
+        <button id="openPanel" onclick="goBack()">Go Back</button>
+        <h1 style="margin-left: 30pc;">YOUR CHILD DETAILS</h1>
+    </div>
+    <h1>Child Details</h1>
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>User Name</th>
+            <th>Child Name</th>
+            <th>Mother Name</th>
+            <th>Father Name</th>
+            <th>Date of Birth</th>
+            <th>Blood Group</th>
+            <th>Doses Taken</th>
+            <th>Doses Left</th>
+            <!-- <th>Dose Taken Date</th>
+            <th>Next Dose Date</th> -->
+            <th>Gender</th>
+            <th>Address</th>
+        </tr>
+        {% for child in childget %}
+        <tr data-date-of-birth="{{ child[4] }}">
+            <td>{{ child[0] }}</td>`
+            <td>{{ child[1] }}</td>
+            <td>{{ child[2] }}</td>
+            <td>{{ child[3] }}</td>
+            <td>{{ child[4] }}</td>
+            <td>{{ child[5] }}</td>
+            <td>{{ child[6] }}</td>
+            <td>{{ child[7] }}</td>
+            <td>{{ child[8] }}</td>
+            <!-- <td>{{ child[7] }}</td>
+            <td>{{ child[8] }}</td> -->
+            <td>{{ child[9] }}</td>
+            <td>{{ child[10] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

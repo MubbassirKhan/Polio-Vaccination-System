@@ -1,0 +1,12 @@
+<!-- logout_button.html -->
+
+{% if login_status %}
+    <li><a href="/logout" id="btn">Logout</a></li>
+{% endif %}
+<script>
+    // Clear the browser history and replace the current page with the home page
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+    };
+</script>

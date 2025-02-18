@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>About Us - Polio Vaccination System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container p a {
+      color: darkblue;
+    }
+
+    .container h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    p {
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 45pc;
+
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href=" ../static/styles.css">
+</head>
+
+<body>
+  <header>
+    {% if session.logged_in %}
+    <button id="openPanel"><i class="fas fa-user"> &nbsp; </i>{{ session.uname }}</button>
+    {% endif %}
+    <div class="sliding-panel">
+        <div class="panel-content">
+            <h1>User Details</h1>
+            <div class="form-container">
+                <h2>Edit Details</h2>
+                <form  method="POST">
+                  <input type="hidden" name="user_id" value="hello">
+                  <div class="input-group">
+                      <label for="uname">Name:</label>
+                      <input type="text" name="uname" value="{{ user[0] if user else '' }}" required>
+                      <button class="edit-button" type="button" onclick="editField('uname')">Edit</button>
+                  </div><br><br>
+                  <div class="input-group">
+                      <label for="email">Email:</label>
+                      <input type="email" name="email" value="{{ user[1] if user else '' }}" required>
+                      <button class="edit-button" type="button" onclick="editField('email')">Edit</button>
+                  </div><br><br>
+                  <div class="input-group">
+                      <label for="phno">Phone Number:</label>
+                      <input type="number" name="phno" value="{{ user[2] if user else '' }}" required>
+                      <button class="edit-button" type="button" onclick="editField('phno')">Edit</button>
+                  </div><br><br>
+                  <div class="input-group">
+                      <label for="Pass">Password:</label>
+                      <input type="password" name="Pass" value="{{ user[3] if user else '' }}" required><br>
+                      <button class="edit-button" type="button" onclick="editField('Pass')">Edit</button>
+                  </div><br><br>
+                  <div class="div" >
+                      <input type="submit" value="Save">
+                  </div>
+              </form>
+
+            </div>
+        </div>
+    </div>
+    <h1>POLIO VACCINATION SYSTEM</h1>
+</header>
+  <nav>
+
+    <ul>
+      <!-- <li id="btn"><a href="javascript:void(0);" onclick="history.back();" >Go Back</a></li> -->
+      {% if session.logged_in %}
+      <li id="logoutbtn"><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+      {% endif %}
+      <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="{{ url_for('vac_detail') }}"><i class="fas fa-syringe"></i> Vaccine Details</a></li>
+      {% if 'logged_in' in session and session['logged_in'] %}
+      <li><a href="{{ url_for('child_detail') }}"><i class="fas fa-child"></i> Child Details</a></li>
+      {% endif %}
+      <li><a href="{{ url_for('vac_drive') }}"><i class="fas fa-car"></i> Vaccine drive</a></li>
+      <li><a href="{{ url_for('other_vaccine') }}"><i class="fas fa-vial"></i> Other Vaccine</a></li>
+    </ul>
+
+  </nav>
+  <div class="container">
+    <div class="logo">
+      <img src="{{ url_for('static', filename='phome2.png')  }}" alt="Polio Vaccination System Logo">
+    </div>
+
+    <h1><u>About Us</u></h1><br><br>
+
+    <p>Welcome to the Polio Vaccination System! We are a dedicated team working towards eradicating polio by providing
+      easy access to polio vaccination services.</p>
+
+    <p>Our mission is to ensure that every child has access to life-saving polio vaccines, regardless of their location
+      or socioeconomic status. We believe that immunization is a fundamental right, and through our system, we aim to
+      make it a reality for everyone.</p>
+
+    <p>With the Polio Vaccination System, you can:</p>
+
+    <ul>
+      <li>Schedule appointments for polio vaccinations</li>
+      <li>Receive notifications and reminders for upcoming vaccinations</li>
+      <li>Track your vaccination history</li>
+      <li>Access educational resources about polio prevention</li>
+    </ul>
+
+    <p>Our team of healthcare professionals is committed to providing safe and effective polio vaccinations. We adhere
+      to the highest standards of quality and follow recommended immunization practices.</p>
+
+    <p>Join us in our mission to eradicate polio and protect future generations from this debilitating disease.</p>
+
+    <p>Contact us at <a href="mailto:info@poliovaccinationsystem.com">info@poliovaccinationsystem.com</a> for any
+      inquiries or feedback.</p>
+  </div>
+</body>
+
+</html>

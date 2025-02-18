@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>POLIO VACCINATION SYSTEM</h1>
+    </header>
+    <nav>
+
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('vac_detail') }}">Vaccine Details</a></li>
+            <li><a href="{{ url_for('vac_drive') }}"><i class="fas fa-car"></i> Vaccine drive</a></li>
+            <li><a href="{{ url_for('other_vaccine') }}"><i class="fas fa-vial"></i> Other Vaccine</a></li>
+            <li><a href="{{ url_for('about') }}">About Us</a></li>
+        </ul>
+    </nav>
+    <div id="boxhead">
+        <h1 style="margin-left: 38pc;">RESET YOUR PASSWARD</h1>
+    </div>
+    <div id="box">
+        <div id="box1">
+            <h1>Welcome!!!</h1><br><br>-
+            <p>To Keep Connected With Us.<br> Login With Your Personal Information</p>
+        </div>
+        <div id="box2">
+            <form action="forgot" method="post">
+
+                <div id="cont2">
+                    <div class="form" id="subhead">
+                        <h3>RESET</h3>
+                    </div>
+                    <div class="form">
+                        <i class="fas fa-user"></i>
+                        <input required type="text" name="uname" id="uname" placeholder="User-Name">
+                    </div>
+
+                    <div class="form">
+                        <i class="fas fa-eye-slash"></i>
+                        <input required type="password" name="npass" id="npass" placeholder="New Passward">
+                    </div>
+
+                    <div class="form">
+                        <i class="fas fa-eye"></i>
+                        <input required type="password" name="cpass" id="cpass" placeholder="Confirm Passward">
+                    </div>
+
+                    <div id="submit" class="form">
+                        <input type="submit" value="SUBMIT">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

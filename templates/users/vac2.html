@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/styles.css') }}">
+    <title>VAC-Detail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        {% if session.logged_in %}
+        <button id="openPanel"><i class="fas fa-user"> &nbsp; </i>{{ session.uname }}</button>
+        {% endif %}
+        <div class="sliding-panel">
+            <div class="panel-content">
+                <h1>User Details</h1>
+                <div class="form-container">
+                    <h2>Edit Details</h2>
+                    <form  method="POST">
+                        <input type="hidden" name="user_id" value="hello">
+                        <div class="input-group">
+                            <label for="uname">Name:</label>
+                            <input type="text" name="uname" value="{{ user[0] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('uname')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" value="{{ user[1] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('email')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="phno">Phone Number:</label>
+                            <input type="number" name="phno" value="{{ user[2] if user else '' }}" required>
+                            <button class="edit-button" type="button" onclick="editField('phno')">Edit</button>
+                        </div><br><br>
+                        <div class="input-group">
+                            <label for="Pass">Password:</label>
+                            <input type="password" name="Pass" value="{{ user[3] if user else '' }}" required><br>
+                            <button class="edit-button" type="button" onclick="editField('Pass')">Edit</button>
+                        </div><br><br>
+                        <div class="div" >
+                            <input type="submit" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <h1>POLIO VACCINATION SYSTEM</h1>
+    </header>
+    <nav>
+
+        <ul>
+            <!-- <li id="btn"><a href="javascript:void(0);" onclick="history.back();">Go Back</a></li> -->
+            {% if session.logged_in %}
+                <li id="logoutbtn"><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a></li>
+            {% if not session.logged_in %}
+                <li><a href="{{ url_for('login') }}"><i class="fas fa-user-circle"></i> LogIn/SignUp</a></li>
+            {% endif %}
+            {% if 'logged_in' in session and session['logged_in'] %}
+                <li><a href="{{ url_for('book') }}"><i class="fas fa-calendar-plus"></i> Book Vaccine</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('vac_detail') }}"><i class="fas fa-syringe"></i> Vaccine Details</a></li>
+            {% if 'logged_in' in session and session['logged_in'] %}
+                <li><a href="{{ url_for('child_detail') }}"><i class="fas fa-child"></i> Child Details</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('vac_drive') }}"><i class="fas fa-car"></i> Vaccine drive</a></li>
+            <li><a href="{{ url_for('other_vaccine') }}"><i class="fas fa-vial"></i> Other Vaccine</a></li>
+            <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About Us</a></li>
+        </ul>
+        
+    </nav>
+    <div id="boxhead">
+        <h1 style="margin-left: 41pc;">Oral Polio Vaccine</h1>
+    </div>
+           <div id="vacbox">
+            <div class="subvac">
+        
+                <img src="{{ url_for('static', filename='vaccine11.jpg') }}" alt="Image Loading" width="90%">
+                <img src="{{ url_for('static', filename='vaccine8.webp') }}" alt="Image Loading" width="90%">
+                <img src="{{ url_for('static', filename='vaccine12.jpg') }}" alt="Image Loading" width="90%">
+        </div>
+            <div id="vac">
+                <div class="s1">
+                    <h1>What is the oral polio vaccine?</h1>
+                    <p>Oral poliovirus vaccines (OPV) are the predominant vaccine used in the fight to eradicate polio.  There are different types of oral poliovirus vaccine, which may contain one, a combination of two, or all three different serotypes of attenuated vaccine. Each has their own advantages and disadvantages over the others.
+
+                        The attenuated poliovirus(es) contained in OPV are able to replicate effectively in the intestine, but around 10,000 times less able to enter the central nervous system than the wild virus. This enables individuals to mount an immune response against the virus. Virtually all countries which have eradicated polio used OPV to interrupt person to person transmission of the virus.
+                    </p>
+                </div>
+                <div class="s1">
+                    <h1>Who should get the OPV?</h1>
+                    <p>The OPV is no longer used in the United States except in certain cases. OPV doses may be given 4
+                        to 8 weeks apart to the following:</p>
+                    <li>Children who have not received any polio vaccine and who are traveling to areas with a high risk
+                        of polio</li>
+                    <li>Large group vaccination programs to control current polio sickness or outbreak in an area</li>
+                    <li>People with a life-threatening allergy to IPV</li>
+                </div>
+                <div class="s1">
+                    <h1>Who should not get the OPV?</h1>
+                    <p>Do not take the OPV if you have had an allergic reaction to it in the past. Do not take the OPV
+                        if you have a weak immune system. This can be caused by long-term steroid medicine use, HIV or
+                        AIDS, or cancer. Do not take the OPV if someone in your house has a weak immune system. Wait to
+                        get the OPV if you are sick or have a fever.</p>
+
+                </div>
+                <div class="s1">
+                    <h1>Call 911 for any of the following:</h1>
+                    <li>Your mouth and throat are swollen.</li>
+                    <li>You are wheezing or have trouble breathing.</li>
+                    <li>You have chest pain or your heart is beating faster than normal for you.</li>
+                    <li>You feel like you are going to faint.</li>
+
+                </div>
+                <div class="s1">
+                    <h1>When should I seek immediate care?</h1>
+                    <li>Your face is red or swollen.</li>
+                    <li>You have hives that spread over your body.</li>
+                    <li>You feel weak or dizzy.</li>
+                    <li>You have severe muscle aches and spasms.</li>
+                    <li>You cannot move your arm or leg.</li>
+                </div>
+                <div class="s1">
+                    <h1>Advantages</h1>
+                    <li>OPVs are all inexpensive (US $0.12-$0.18 for countries procuring through UNICEF in 2016).</li>
+                    <li>OPVs are safe and effective and offer long lasting protection against the serotype(s) which they target. OPV stimulates good mucosal immunity, which is why it is so effective at interrupting transmission of the virus.</li>
+                    <li>OPVs are administered orally and do not require health professionals or sterile needle syringes. As such, OPVs are easy to administer in mass vaccination campaigns.</li>
+                    <li>For several weeks after vaccination the vaccine virus replicates in the intestine, is excreted and can be spread to others in close contact. This means that in areas with poor hygiene and sanitation, immunization with OPV can result in ‘passive’ immunization of people who have not been vaccinated.</li>
+                </div>
+                <div class="s1">
+                    <h1>Disadvantages</h1>
+                    <li>OPV is extremely safe and effective. However, in extremely rare cases (at a rate of approximately 2 to 4 events per 1 million births [1]) the live attenuated vaccine-virus in OPV can cause paralysis. In some cases, it is believed that this may be triggered by an immunodeficiency. The extremely low risk of vaccine-associated paralytic poliomyelitis (VAPP) is well accepted by most public health programmes.</li>
+                    <li>Very rarely, when there is insufficient coverage in a community the vaccine-virus may be able to circulate, mutate and, over the course of 12 to 18 months, reacquire neurovirulence. This is known as a circulating vaccine-derived poliovirus.</li>
+                </div>
+            </div>
+             
+        </div>
+</body>
+<script>
+    document.getElementById("openPanel").addEventListener("click", function () {
+        document.querySelector(".sliding-panel").style.right = "0";
+    });
+
+    document.addEventListener("click", function (e) {
+        if (!document.querySelector(".sliding-panel").contains(e.target) && e.target !== document.getElementById("openPanel")) {
+            document.querySelector(".sliding-panel").style.right = "-50%";
+        }
+    });
+</script>
+</html>

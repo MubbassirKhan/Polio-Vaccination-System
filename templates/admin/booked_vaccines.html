@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registered Users - Polio Vaccination System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+
+</head>
+<header>
+    <h1>POLIO VACCINATION SYSTEM</h1>
+</header>
+<nav>
+    <ul>
+        <li{% if active_page=='home' %} class="active" {% endif %}><a href="{{ url_for('adminhome') }}">Home</a></li>
+            <li><a href="{{ url_for('vac_stock') }}">Vaccine Stock</a></li>
+            <li><a href="{{ url_for('vac_schedule') }}">Vaccine Schedule</a></li>
+            <li><a href="{{ url_for('reports') }}">Reports</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Users</a>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('booked_vaccines') }}">Booked Vaccines</a>
+                    <a href="{{ url_for('registered_users') }}">Registered Users</a>
+                </div>
+            </li>
+            <li><a href="{{ url_for('admin_logout') }}">Logout</a></li>
+    </ul>
+</nav>
+
+<body>
+
+    <h2>Vaccine Booked By</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Mother Name</th>
+                <th>Father Name</th>
+                <th>Child Name</th>
+                <th>Child DOB</th>
+                <th>Gender</th>
+                <th>ID Proof</th>
+                <th>ID Number</th>
+                <th>State</th>
+                <th>District</th>
+                <th>Town</th>
+                <th>Center</th>
+                <!-- <th>Booked Date</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in user_details %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[2] }}</td>
+                <td>{{ user[3] }}</td>
+                <td>{{ user[4] }}</td>
+                <td>{{ user[5] }}</td>
+                <td>{{ user[6] }}</td>
+                <td>{{ user[7] }}</td>
+                <td>{{ user[8] }}</td>
+                <td>{{ user[9] }}</td>
+                <td>{{ user[10] }}</td>
+                <!-- <td>{{ user[3] }}</td> -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

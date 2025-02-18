@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="boxhead">
+        <button id="openPanel" onclick="goBack()">Go Back</button>
+        <h1 style="margin-left: 30pc;">SUBMIT CHILD DETAILS HERE</h1>
+    </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    <div id="box">
+        <div id="box1">
+            <h1>Welcome!!!</h1><br><br>-
+            <p>hello welcome to login page</p>
+        </div>
+        <div id="box2">
+            <div class="form" id="subhead">
+                <h3>Child Details</h3>
+            </div>
+            <form method="POST" action="childsubmit" enctype="multipart/form-data" onsubmit="return validateForm()">
+                <div class="form">
+                    <input required type="text" name="child_name" placeholder="Enter Child's Name">
+                </div>
+
+                <div class="form">
+                    <input required type="text" name="mother_name" placeholder="Enter Mother's Name">
+                </div>
+
+                <div class="form">
+                    <input required type="text" name="father_name" placeholder="Enter Father's Name">
+                </div>
+
+                <div class="form">
+                    <input required type="date" name="date_of_birth">
+                </div>
+
+                <div class="form">
+                    <input required type="text" name="blood_group" placeholder="Enter Child Blood Group">
+                </div>
+
+                <div class="form">
+                    <input required type="number" id="dosesTakenInput" name="doses_taken"
+                        placeholder="Enter Doses Taken" oninput="updateDosesLeft()">
+                </div>
+
+                <div class="form">
+                    <input required type="number" id="dosesLeftInput" name="doses_left" placeholder="Doses Left"
+                        disabled>
+                </div>
+
+                <div class="form">
+                    <input required type="text" name="gender" placeholder="Enter Child Gender">
+                </div>
+
+                <div class="form">
+                    <label for="DOB"> Enter 1st DOse Taken Date</label>
+                    <input type="date" name="DOB">
+                </div>
+
+                <div class="form">
+                    <input required type="text" name="address" placeholder="Enter Address">
+                </div>
+                <div class="form">
+                    <label for="dose1">Dose 1</label>
+                    <input type="checkbox" name="dose" value="dose1">
+                    &nbsp;&nbsp;
+                    <label for="dose2">Dose 2</label>
+                    <input type="checkbox" name="dose" value="dose2">
+                </div>
+                
+                <div class="form">
+                    <label for="dose3">Dose 3</label>
+                    <input type="checkbox" name="dose" value="dose3">
+                    &nbsp;&nbsp;
+                    <label for="dose4">Dose 4</label>
+                    <input type="checkbox" name="dose" value="dose4">
+                </div>
+                <div class="form" id="submit">
+                    <input type="submit" value="Submit">
+                </div>
+
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    function validateForm() {
+        // Validate the form inputs before submission
+        var dosesTaken = parseInt(document.getElementById('dosesTakenInput').value, 10);
+        var dosesLeft = parseInt(document.getElementById('dosesLeftInput').value, 10);
+        var dateOfBirthInput = document.getElementsByName('date_of_birth')[0];
+        var currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0); // Reset the time part to 00:00:00
+
+        if (dosesTaken < 0 || dosesTaken > 4) {
+            alert('Doses Taken must be between 0 and 4.');
+            return false;
+        }
+
+        if (dosesLeft < 0 || dosesLeft > 4) {
+            alert('Doses Left must be between 0 and 4.');
+            return false;
+        }
+
+        // Convert the "Date of Birth" input value to a Date object
+        var dateOfBirth = new Date(dateOfBirthInput.value);
+        dateOfBirth.setHours(0, 0, 0, 0); // Reset the time part to 00:00:00
+
+        if (dateOfBirth >= currentDate) {
+            alert('Date of Birth should be before today.');
+            return false;
+        }
+
+        var bloodGroupInput = document.getElementsByName('blood_group')[0].value;
+        var bloodGroupRegex = /^[A-Za-z+-]+$/;
+
+        if (!bloodGroupRegex.test(bloodGroupInput)) {
+            alert('Blood Group should contain only letters (A-Z, a-z).');
+            return false;
+        }
+
+        return true; // Submit the form if validation passes
+    }
+
+    function updateDosesLeft() {
+        // Automatically calculate Doses Left based on Doses Taken
+        var dosesTaken = parseInt(document.getElementById('dosesTakenInput').value, 10);
+        var maxDoses = 4;
+        var dosesLeft = maxDoses - dosesTaken;
+
+        // Update the Doses Left input field
+        document.getElementById('dosesLeftInput').value = dosesLeft;
+    }
+
+    document.getElementById("openPanel").addEventListener("click", function () {
+        document.querySelector(".sliding-panel").style.right = "0";
+    });
+
+    document.addEventListener("click", function (e) {
+        if (!document.querySelector(".sliding-panel").contains(e.target) && e.target !== document.getElementById("openPanel")) {
+            document.querySelector(".sliding-panel").style.right = "-50%";
+        }
+    });
+</script>
+
+</html>
